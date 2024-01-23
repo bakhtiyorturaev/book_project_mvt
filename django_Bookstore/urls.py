@@ -26,10 +26,6 @@ urlpatterns = [
     # to prevent authenticated users from going to back to the login screen
     path('', include('django.contrib.auth.urls')),
     path('home/', include('books.urls')),
-    #
-    # path('books/', include('books.urls')),
-    # path('login/', include('user.urls')),
-    # path('logout/', include('user.urls')),
     path('', include('user.urls')),
 
 

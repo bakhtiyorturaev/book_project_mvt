@@ -1,18 +1,19 @@
 from django import forms
 from django.contrib.auth.forms import UserCreationForm
-from django.contrib.auth.models import User
+from django.contrib.auth.models import User, AbstractUser
+from django.contrib.auth import get_user_model
 
 
 class CustomUserCreationForm(UserCreationForm):
     email = forms.EmailField(required=True, label='Email')
-    first_name = forms.CharField(max_length=30, label='First Name')
-    last_name = forms.CharField(max_length=30, label='Last Name')
-    phone_number = forms.CharField(max_length=15, label='Phone Number')
-    birth_date = forms.DateField(label='Birth Date', widget=forms.SelectDateWidget)
+    first_name = forms.CharField(max_length=30, label='First name')
+    last_name = forms.CharField(max_length=30, label='Last name')
+    phone_number = forms.CharField(max_length=15, label='Phone number')
+    birth_date = forms.DateField(label="Birth date", widget=forms.SelectDateWidget)
 
     class Meta:
-        model = User
-        fields = UserCreationForm.Meta.fields + ('email', 'first_name', 'last_name', 'phone_number', 'birth_date')
+        model = get_user_model()
+        fields = UserCreationForm.Meta.fields + ('username', 'email', 'first_name', 'last_name', 'phone_number', 'birth_date', 'image_user')
 
 
 class LoginForm(forms.Form):
