@@ -77,7 +77,7 @@ WSGI_APPLICATION = 'django_Bookstore.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'books_project',
+        'NAME': 'books',
         'USER': 'baxtiyor',
         'HOST': 'localhost',
         'PORT': '5432',
