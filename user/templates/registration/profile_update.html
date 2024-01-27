@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+{% block title %} Profilni yangilash {% endblock title %}
+
+{% block content %}
+
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-6"><h3 class="display-2 text-white">Sizning akkauntingiz</h3>
+            <form method="POST" enctype="multipart/form-data">
+                {% csrf_token %}
+                <div class="form-group">
+                    <label for="inputFirstName" style="color: white;">Ism:</label>
+                    {{ update_form.first_name }}
+                </div>
+                <div class="form-group">
+                    <label for="inputLastName" style="color: white;">Familiya:</label>
+                    {{ update_form.last_name }}
+                </div>
+                <div class="form-group">
+                    <label for="inputPicture" style="color: white;">Rasm tanlang:</label>
+                    {{ update_form.picture }}
+                </div>
+                <button type="submit" class="btn btn-primary btn-block">Saqlash</button>
+            </form>
+        </div>
+    </div>
+</div>
+
+{% endblock content %}

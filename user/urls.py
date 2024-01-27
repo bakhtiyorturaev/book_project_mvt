@@ -1,10 +1,12 @@
 from django.urls import path
 from .models import CustomerUser
-from .views import index, user_login, user_logout, user_signup
+from .views import index, user_login, user_logout, user_signup, ProfileUpdateView, profile_view
 
+app_name = 'user'
 urlpatterns = [
-    path('', user_login, name='login'),
-    path('', user_logout, name='logout'),
+    path('login/', user_login, name='login'),
+    path('logout/', user_logout, name='logout'),
     path('signup/', user_signup, name='signup'),
+    path('profile/', profile_view, name='profile'),
+    path('profile-update/', ProfileUpdateView.as_view(), name='profile-update')
 ]
-

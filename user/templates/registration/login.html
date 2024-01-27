@@ -21,7 +21,7 @@
         <p class="text-white text-center display-6">Ushbu sahifani ko'rish uchun tizimga kiring.</p>
         {% endif %}
     {% endif %}
-    
+
     <div class="container d-flex flex-column justify-content-center align-content-center mx-auto mt-5 align-items-center  login-div py-4">
          <form method="POST" action="{% url 'login' %}">
         {% csrf_token %}
@@ -44,9 +44,9 @@
 
         <p style="font-size: 18px;"><a href="{% url 'password_reset' %}">Parolingiz esdan chiqdimi?</a></p>
         <div class="d-flex justify-content-end mt-2">
-    <a href="{% url 'signup' %}" class="btn btn-login w-100" style="font-size: 18px;">Ro`yxatdan o`tish</a>
+    <a href="{% url 'user:signup' %}" class="btn btn-login w-100" style="font-size: 18px;">Ro`yxatdan o`tish</a>
         </div>
     </div>
-   
-  
+
+
 {% endblock content %}

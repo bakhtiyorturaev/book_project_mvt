@@ -1,7 +1,8 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login, logout, get_user_model
-from .forms import LoginForm, CustomUserCreationForm
+from .forms import LoginForm, CustomUserCreationForm, CustomerUserUpdateForm
 from django.contrib import messages
+from django.views import View
 
 
 # Home page
@@ -48,4 +49,29 @@ def user_login(request):
 # Logout page
 def user_logout(request):
     logout(request)
-    return redirect('logout')
+    return redirect('login')
+
+
+class ProfileUpdateView(View):
+    def get(self, request):
+        update_form = CustomerUserUpdateForm(instance=request.user)
+        context = {
+            'update_form': update_form
+        }
+        return render(request, 'registration/profile_update.html', context=context)
+
+    def post(self, request):
+        update_form = CustomerUserUpdateForm(
+            instance=request.user,
+            data=request.POST,
+            files=request.FILES
+        )
+        if update_form.is_valid():
+            update_form.save()
+            return redirect('users:profile')
+        else:
+            return render(request, 'registration/profile_update.html', {'update_form': update_form})
+
+
+def profile_view(request):
+    return render(request, 'registration/profile.html')

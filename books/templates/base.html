@@ -55,13 +55,16 @@
             </ul>
 
             {% if user.is_authenticated %}
-              <a href="{% url 'logout' %}" class="btn btn-logout ms-auto " style="margin-right: 10px;">Chiqish</a>
-              <img src="{{ user.image_user.url }}" style="width:50px; height:50px; background: none; border: none;" class="my-btn">
-<!--              <img src="{}">-->
-<!--              <a href="{% url 'signup' %}" class="btn btn-signup ms-2">Ro'yxatdan o'tish</a>-->
+              <a href="{% url 'user:login' %}" class="btn btn-logout ms-auto " style="margin-right:15px; ">Chiqish</a>
+              <a href="{% url 'user:profile' %}" class="btn btn-profile">
+                <div class="circular-container">
+                  <img src="{{ user.image_user.url }}" alt="User Profile Image" class="my-btn rounded-circle" style="width: 40px; height: 40px;">
+                </div>
+              </a>
+
             {% else %}
-                <a href="{% url 'login' %}" class="btn btn-login ms-auto">Kirish</a>
-                <a href="{% url 'signup' %}" class="btn btn-signup ms-2">Ro'yxatdan o'tish</a>
+                <a href="{% url 'user:login' %}" class="btn btn-login ms-auto">Kirish</a>
+                <a href="{% url 'user:signup' %}" class="btn btn-signup ms-2">Ro'yxatdan o'tish</a>
             {% endif %}
           </div>
         </div>

@@ -23,10 +23,9 @@ from django.contrib.auth import views as auth_view
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('login/', auth_view.LoginView.as_view(redirect_authenticated_user=True)),
-    # to prevent authenticated users from going to back to the login screen
     path('', include('django.contrib.auth.urls')),
     path('home/', include('books.urls')),
-    path('', include('user.urls')),
+    path('user/', include('user.urls')),
 
 
 ]

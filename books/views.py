@@ -11,7 +11,7 @@ class IndexView(ListView):
     context_object_name = 'books'
 
     def get_queryset(self):
-        return Book.objects.all()
+        return Book.objects.order_by('-create_at')
 
 
 class BookDetailView(DetailView):
