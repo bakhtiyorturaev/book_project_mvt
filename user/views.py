@@ -3,6 +3,7 @@ from django.contrib.auth import authenticate, login, logout, get_user_model
 from .forms import LoginForm, CustomUserCreationForm, CustomerUserUpdateForm
 from django.contrib import messages
 from django.views import View
+from django.contrib.auth.views import PasswordResetConfirmView
 
 
 # Home page
@@ -75,3 +76,4 @@ class ProfileUpdateView(View):
 
 def profile_view(request):
     return render(request, 'registration/profile.html')
+
