@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login, logout, get_user_model
-from .forms import LoginForm, CustomUserCreationForm, CustomerUserUpdateForm
+from .forms import LoginForm, CustomUserCreationForm, CustomerUserUpdateForm, CustomerUser
 from django.contrib import messages
 from django.views import View
 from django.contrib.auth.views import PasswordResetConfirmView
@@ -13,20 +13,20 @@ def index(request):
 
 # Signup page
 def user_signup(request):
-    registered_user = None
     if request.method == 'POST':
         form = CustomUserCreationForm(request.POST)
         if form.is_valid():
             form.save()
+
             User = get_user_model()
-            registered_user = User.objects.get(email=form.cleaned_data['email'])
-            return redirect('login')
+            registered_user = User.objects.filter(email=form.cleaned_data['email']).first()
+            if registered_user:
+                return redirect('login')
     else:
         form = CustomUserCreationForm()
-    return render(request, 'registration/signup.html', {'form': form, 'registered_user': registered_user})
+    return render(request, 'registration/signup.html', {'form': form})
 
 
-# login page
 def user_login(request):
     if request.method == 'POST':
         form = LoginForm(request.POST)
@@ -37,13 +37,11 @@ def user_login(request):
 
             if user and user.is_active:
                 login(request, user)
-                return redirect('home')
+                return redirect('home')  # Ro'yxatdan o'tgan foydalanuvchilarga home sahifasiga o'tkazish
             else:
-                form.add_error(None, '')
-
+                form.add_error(None, "Foydalanuvchi nomi va paroli mos kelmadi.")
     else:
         form = LoginForm()
-
     return render(request, 'registration/login.html', {'form': form})
 
 
@@ -65,8 +63,11 @@ class ProfileUpdateView(View):
         update_form = CustomerUserUpdateForm(
             instance=request.user,
             data=request.POST,
-            files=request.FILES
+            files=request.FILES,
         )
+        if 'password' in request.POST:
+            update_form.instance.set_password(request.POST['password'])
+
         if update_form.is_valid():
             update_form.save()
             return redirect('users:profile')
@@ -76,4 +77,3 @@ class ProfileUpdateView(View):
 
 def profile_view(request):
     return render(request, 'registration/profile.html')
-

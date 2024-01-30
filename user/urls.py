@@ -7,7 +7,7 @@ app_name = 'user'
 urlpatterns = [
     path('login/', user_login, name='login'),
     path('logout/', user_logout, name='logout'),
-    path('signup/', user_signup, name='signup'),
+    path('signup/', user_signup, name='signup', ),
     path('profile/', profile_view, name='profile'),
     path('profile-update/', ProfileUpdateView.as_view(), name='profile-update'),
 
