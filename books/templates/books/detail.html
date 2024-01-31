@@ -51,7 +51,6 @@
     <textarea class="form-control" placeholder="Leave a review here" name="review" style="height: 6.25rem"></textarea>
     <label class="ms-1" >Sharhlarni bu yerga yozing</label>
     <div class="d-flex justify-content-end">
-<!--      <button class="btn w-25" type="submit">Saqlash</button>-->
       <a class="btn w-25" href="{% url 'home' %}">Saqlash</a>
 
     </div>
@@ -63,7 +62,7 @@
   </div>
   {% endif %}
 
-  {% for review in reviews %}
+  {% for review in book_reviews %}
     {% if review.body|length > 1 %}
       <div class=" bg-white rounded-2 d-block px-2 mx-5 review-div" style="width: fit-content; max-width: 40vw; line-height: 1.2rem;">
           <p class="mb-1 fw-bold" style="color: black;">{{ review.user }}:</p>
