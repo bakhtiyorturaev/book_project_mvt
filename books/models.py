@@ -30,7 +30,6 @@ class Review(models.Model):
     body = models.TextField()
     user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
     created_at = models.DateTimeField(auto_now=True)
-    # field name gets suffixed with _id because it connects with the ID of its parent
     book = models.ForeignKey(Book, on_delete=models.CASCADE, null=True)
 
     def __str__(self) -> str:

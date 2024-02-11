@@ -15,15 +15,22 @@ def regis_isvalid(request):
 
 
 class CustomUserCreationForm(UserCreationForm):
-    email = forms.EmailField(required=True, label='Email')
-    first_name = forms.CharField(max_length=30, label='First name')
-    last_name = forms.CharField(max_length=30, label='Last name')
     phone_number = forms.CharField(max_length=13, label='Phone number')
     birth_date = forms.DateField(label="Birth date", widget=DateInput(attrs={'type': 'date'}))
 
     class Meta:
         model = CustomerUser
-        fields = ('username', 'first_name', 'last_name', 'email', 'phone_number', 'birth_date', 'image_user')
+        fields = ('username', 'first_name', 'last_name', 'email', 'phone_number', 'birth_date', 'image_user', 'password1', 'password2')
+        labels = {
+            'first_name': "Ism",
+            'last_name': "Familiya",
+            'username': "Login",
+            'email': "Email",
+            'phone_number': "Telefon raqam",
+            'birth_date': "Tug'ilgan kun",
+            'image_user': "Profil uchun rasm"
+
+        }
 
 
 class LoginForm(forms.Form):
@@ -36,3 +43,13 @@ class CustomerUserUpdateForm(ModelForm):
         model = CustomerUser
         fields = ['username', 'first_name', 'last_name', 'email', 'image_user', 'phone_number', 'birth_date',
                   'password']
+        labels = {
+            'first_name': "Ism",
+            'last_name': "Familiya",
+            'username': "Login",
+            'email': "Email",
+            'phone_number': "Telefon raqam",
+            'birth_date': "Tug'ilgan kun",
+            'image_user': "Profil uchun rasm"
+
+        }

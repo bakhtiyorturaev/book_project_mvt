@@ -18,15 +18,14 @@ from django.conf.urls.static import static
 from django.conf import settings
 from django.contrib import admin
 from django.urls import path, include
-from django.contrib.auth import views as auth_view
+from books.views import IndexView
+
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('login/', auth_view.LoginView.as_view(redirect_authenticated_user=True)),
-    path('', include('django.contrib.auth.urls')),
-    path('', include('books.urls')),
+    path('books/', include('books.urls')),
     path('user/', include('user.urls')),
-
+    path('', IndexView.as_view(), name='home'),
 
 ]
 if settings.DEBUG:

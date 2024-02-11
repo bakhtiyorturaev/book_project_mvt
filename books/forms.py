@@ -7,5 +7,4 @@ class ReviewForm(forms.ModelForm):
         model = Review
         fields = ['body']
 
-    from .models import Review
 

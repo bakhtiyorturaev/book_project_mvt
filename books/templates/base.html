@@ -16,14 +16,17 @@
     />
 
     <link rel="stylesheet" href="{% static 'books/css/style.css' %}" />
+
+
   </head>
 
   <body>
+
     <!-- NAV BAR -->
     {% block navbar %}
-      <nav class="navbar navbar-expand-md navbar-light" style="background-color: rgb(253, 234, 211)">
+      <nav class="navbar navbar-expand-md navbar-light" style="background-color: rgb(353, 334, 211)">
         <div class="container-fluid">
-          <a class="navbar-brand" href="#">....Books</a>
+          <a class="navbar-brand" href="#">E-Books</a>
           <button
             class="navbar-toggler"
             type="button"
@@ -44,7 +47,7 @@
                 <a class="nav-link" href="#">Featured</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="#">Pricing</a>
+                <a class="nav-link" href="#">Korzinka</a>
               </li>
               <li class="nav-item">
                 <a class="nav-link" href="#">Biz haqimizda</a>
@@ -54,15 +57,16 @@
               </li>
             </ul>
 
-            {% if user.is_authenticated %}
-              <a href="{% url 'user:login' %}" class="btn btn-logout ms-auto " style="margin-right:15px; ">Chiqish</a>
 
+
+
+            {% if user.is_authenticated %}
+            <a href="{% url 'user:logout' %}" class="btn btn-logout ms-auto " style="margin-right:15px; ">Chiqish</a>
               <a href="{% url 'user:profile' %}" class="btn btn-profile">
                 <div class="circular-container">
                   <img src="{{ user.image_user.url }}" alt="User Profile Image" class="my-btn rounded-circle" style="width: 40px; height: 40px;">
                 </div>
               </a>
-
             {% else %}
                 <a href="{% url 'user:login' %}" class="btn btn-login ms-auto">Kirish</a>
                 <a href="{% url 'user:signup' %}" class="btn btn-signup ms-2">Ro'yxatdan o'tish</a>
@@ -74,7 +78,7 @@
     <!-- END NAV BAR -->
 
     <!-- TITLE -->
-    <h1>.... Bookstore</h1>
+    <h1>E-Bookstore</h1>
     <!-- END TITLE -->
 
     <!-- CONTENT -->
