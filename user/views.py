@@ -43,7 +43,7 @@ def user_login(request):
     if request.method == 'POST':
         form = LoginForm(request.POST)
         if form.is_valid():
-            username = form.cleaned_data['username']
+            username = form.cleaned_data['username'].lower()
             password = form.cleaned_data['password']
 
             user = authenticate(request, username=username, password=password)
@@ -92,3 +92,4 @@ class ProfileUpdateView(LoginRequiredMixin, View):
 @login_required(login_url='login')
 def profile_view(request):
     return render(request, 'registration/profile.html')
+

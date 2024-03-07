@@ -8,3 +8,10 @@ class ReviewForm(forms.ModelForm):
         fields = ['body']
 
 
+class AddCommentForm(forms.ModelForm):
+    class Meta:
+        model = Review
+        fields = (
+            'book', 'user', 'body'
+        )
+
