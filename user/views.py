@@ -24,7 +24,7 @@ def user_signup(request):
                 i.label = "Parolni tasdiqlang"
         if form.is_valid():
             form.save(commit=False)
-            form.username = form.username.lower()
+            form.instance.username = form.cleaned_data['username'].lower()
             form.save()
             messages.success(request, "Ro'yxatdan muvaffaqiyatli o'ttingiz ")
             User = get_user_model()
