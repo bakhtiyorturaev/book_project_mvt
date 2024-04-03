@@ -20,19 +20,30 @@
   </div>
 
 <center>
-  <div class="paginator my-3 " >
-      <ul class="container card rounded-4" >
-          <li><a href="#" class="btn btn-login btn--disabled">&#10094; Orqaga</a></li>
-          <li><a href="#" class="btn btn-login btn--sub">01</a></li>
-          <li><a href="#" class="btn btn-login">02</a></li>
-          <li><a href="#" class="btn btn-login">03</a></li>
-          <li><a href="#" class="btn btn-login">04</a></li>
-          <li><a href="#" class="btn btn-login">05</a></li>
-          <li><a href="#" class="btn btn-login">Oldinga &#10095;</a></li>
+  <div class="paginator my-3">
+      <ul class="container card rounded-4">
+          {% if page_obj.has_previous %}
+              <li><a href="?page=1" class="btn btn-login btn--disabled">&#10094; Orqaga</a></li>
+          {% else %}
+              <li><span class="btn btn-login btn--disabled">&#10094; Orqaga</span></li>
+          {% endif %}
+
+          {% for num in page_obj.paginator.page_range %}
+              {% if num == page_obj.number %}
+                  <li><span class="btn btn-login btn--sub">{{ num }}</span></li>
+              {% else %}
+                  <li><a href="?page={{ num }}" class="btn btn-login">{{ num }}</a></li>
+              {% endif %}
+          {% endfor %}
+
+          {% if page_obj.has_next %}
+              <li><a href="?page={{ page_obj.paginator.num_pages }}" class="btn btn-login">Oldinga &#10095;</a></li>
+          {% else %}
+              <li><span class="btn btn-login btn--disabled">Oldinga &#10095;</span></li>
+          {% endif %}
       </ul>
   </div>
 </center>
-
 
 <!--<center>-->
 <!--  <div class="paginator my-3" >-->
