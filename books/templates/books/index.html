@@ -1,0 +1,62 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+  {% block author_if_any %}
+  {% endblock author_if_any %}
+
+  <div class="container my-8">
+    {% for book in books %}
+    <div class="card rounded-4" style="width: 18rem">
+      <img src="{{ book.image.url }}" class="card-img-top" alt="..." />
+      <div class="card-body">
+        <h5 class="card-title">{{ book.title }}</h5>
+        <a href="{% url 'detail' book.id %}" class="btn btn-primary mb-auto">Batafsil</a>
+        {% if book.book_file %}
+          <a href="{{ book.book_file.url }}" class="btn btn-login mb-auto" download>Yuklab olish</a>
+        {% endif %}
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+
+<center>
+  <div class="paginator my-3 " >
+      <ul class="container card rounded-4" >
+          <li><a href="#" class="btn btn-login btn--disabled">&#10094; Orqaga</a></li>
+          <li><a href="#" class="btn btn-login btn--sub">01</a></li>
+          <li><a href="#" class="btn btn-login">02</a></li>
+          <li><a href="#" class="btn btn-login">03</a></li>
+          <li><a href="#" class="btn btn-login">04</a></li>
+          <li><a href="#" class="btn btn-login">05</a></li>
+          <li><a href="#" class="btn btn-login">Oldinga &#10095;</a></li>
+      </ul>
+  </div>
+</center>
+
+
+<!--<center>-->
+<!--  <div class="paginator my-3" >-->
+<!--      <ul class="container card rounded-4" >-->
+<!--          {% if page_obj.has_previous %}-->
+<!--              <li><a href="?page=1" class="btn btn-login">&#10094; Orqaga</a></li>-->
+<!--          {% else %}-->
+<!--              <li><span class="btn btn-login btn&#45;&#45;disabled">&#10094; Orqaga</span></li>-->
+<!--          {% endif %}-->
+<!--          {% for num in page_obj.paginator.page_range %}-->
+<!--              {% if page_obj.number == num %}-->
+<!--                  <li><span class="btn btn-login btn&#45;&#45;sub">{{ num|add:":" }}</span></li>-->
+<!--              {% else %}-->
+<!--                  <li><a href="?page={{ num }}" class="btn btn-login">{{ num|add:":" }}</a></li>-->
+<!--              {% endif %}-->
+<!--          {% endfor %}-->
+<!--          {% if page_obj.has_next %}-->
+<!--              <li><a href="?page={{ page_obj.paginator.num_pages }}" class="btn btn-login">Oldinga &#10095;</a></li>-->
+<!--          {% else %}-->
+<!--              <li><span class="btn btn-login btn&#45;&#45;disabled">Oldinga &#10095;</span></li>-->
+<!--          {% endif %}-->
+<!--      </ul>-->
+<!--  </div>-->
+<!--</center>-->
+
+
+{% endblock content %}

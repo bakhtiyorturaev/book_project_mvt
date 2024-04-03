@@ -1,0 +1,74 @@
+{% extends 'base.html' %} 
+
+{% block page-title %}
+  <title>...Book - detail</title>
+{% endblock page-title %}
+
+{% block content %}
+  <h2 class="text-light text-center display-5">{{ book.title }}</h2>
+  <div class="d-flex justify-content-center my-5">
+    <img src="{{ book.image.url}}" width="300" alt="" />
+  </div>
+
+  <div class="container my-5 detail-text-div">
+    <h6 class="display-6 mb-0">Haqida:</h6>
+    {% if book.shortDescription is None %}
+      <p class="fst-italic px-4">Bu kitob uchun tarif yozing.</p>
+    {% else %}
+      <p class="fst-italic px-4 text-center">{{ book.shortDescription }}</p>
+    {% endif %}
+   <h6 class="display-6 mb-0">Muallif:</h6>
+      {% for author in authors %}
+      <a href="{% url 'author_books' author %}" class="text-decoration-none">{{ author }}</a>{% if forloop.last %}{% else %},{% endif %}
+      {% endfor %}
+
+      <h6 class="display-6 mb-0">Betlar soni:</h6>
+    <p class="fst-bold px-4">Jami {{ book.pageCount }} bet</p>
+
+    <h6 class="display-6 mb-0">Tavsif:</h6>
+    <p class="fst-italic px-4 text-center">
+      {{ book.longDescription|safe|truncatewords:"200"}}
+    </p>
+    
+    <!-- TODO: Add Read more button here -->
+    {% comment %}
+     <button class="btn mb-3 read-more-btn" onclick="readMore()" id="read-more">Batafsil...</button>
+    {% endcomment %}
+    <!--  TODO END -->
+  </div>
+
+  <h2 class="display-3 text-white text-center">Sharhlar</h2>
+  {% if user.is_authenticated %}  
+    <form
+    class="container form-floating my-5 d-flex flex-column justify-content-center"
+    method="POST"
+    action="{% url 'review' book.id%}">
+
+    {% csrf_token %}
+    <textarea class="form-control" placeholder="Leave a review here" name="review" style="height: 6.25rem"></textarea>
+    <label class="ms-1" >Sharhlarni bu yerga yozing</label>
+    <div class="d-flex justify-content-end">
+      <a class="btn w-25" href="{% url 'home' %}">Saqlash</a>
+
+    </div>
+    </form>
+  {% else %}
+  <div class="d-flex justify-content-center my-3">
+    <a href="{% url 'login' %}?next={{ request.path}}" class="btn btn-login">Sharh yozish uchun tizimga kiring</a>
+  </div>
+  {% endif %}
+
+  {% for review in book_reviews %}
+    {% if review.body|length > 1 %}
+      <div class=" bg-white rounded-2 d-block px-2 mx-5 review-div" style="width: fit-content; max-width: 40vw; line-height: 1.2rem;">
+          <p class="mb-1 fw-bold" style="color: black;">{{ review.user }}:</p>
+          <p class="py-1" style="color: brown;">{{ review.body|capfirst }}</p>
+          <p class="text-end text-black-50">{{ review.created_at }}</p>
+        </div>
+    {% endif %}
+  {% endfor %}
+
+{% endblock content %}
+
+<!-- SCRIPTS -->
+<!-- END SCRIPTS -->

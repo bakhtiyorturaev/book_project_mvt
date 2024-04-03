@@ -1,0 +1,172 @@
+body {
+  background-color: bisque;
+  position: relative;
+  background: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), url("../assets/library.jpg");
+}
+
+h1 {
+  text-align: center;
+  font-size: 3rem;
+  margin: 20px 0px;
+  background-color: brown;
+  color: white;
+  letter-spacing: 5px;
+  font-family: "Century gothic";
+}
+
+.container {
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: repeat(auto-fill, minmax(18rem, 1fr));
+  justify-items: center;
+}
+
+.card {
+  transition: all 0.3s ease;
+}
+
+.card:hover {
+  transform: rotate(-1deg);
+  box-shadow: rgba(0, 0, 0, 0.8) 8px 8px 10px, inset rgba(0, 0, 0, 0.2) 0px -15px 20px;
+  cursor: pointer;
+}
+
+.img-div > img {
+  width: 100%;
+}
+
+.text-div > p {
+  font-size: 1.2em;
+}
+
+.btn {
+  position: relative;
+  z-index: 1;
+  overflow: hidden;
+  background-color: brown;
+  border-color: brown;
+  color: white;
+}
+
+.btn::before {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  top: 0;
+  left: -35%;
+  height: 100%;
+  width: 0;
+  transform: skew(-30deg);
+  transition-duration: 0.5s;
+  transform-origin: top left;
+}
+
+.btn:hover:before {
+  background-color: rgb(243, 63, 63);
+  border-color: rgb(243, 63, 63);
+  width: 160%;
+  height: 110%;
+  outline: none;
+}
+
+.btn:hover {
+  color: white;
+  border-color: rgb(243, 63, 63);
+  outline: none;
+}
+
+.detail-text-div {
+  background-color: white;
+  color: brown;
+  display: grid;
+  gap: 0;
+  grid-template-columns: 1fr;
+  border-radius: 10px;
+}
+
+.display-6 {
+  font-size: 1.5em;
+  font-weight: 500;
+}
+
+textarea {
+  border-radius: 10px;
+}
+
+.review-div{
+  position: relative;
+}
+
+.review-div::before{
+  content: "";
+  position: absolute;
+  background-color: white;
+  top: 0;
+  left: -0.5%;
+  transform: skew(30deg);
+  height: 1rem;
+  width: 1rem;
+  z-index: -1;
+  border-radius: 2px;
+}
+
+.btn-login{
+background-color: rgb(13, 136, 68);
+border-color: rgb(13, 136, 68);
+}
+
+.btn-login:hover::before{
+background-color: rgb(7, 177, 84);
+border-color: rgb(7, 177, 84);
+}
+
+.btn-login:hover{
+  border-color: rgb(7, 177, 84);
+}
+
+.btn-logout{
+  background-color: rgb(73, 73, 73);
+  border-color: rgb(73, 73, 73);
+}
+
+.btn-logout:hover::before{
+  background-color: black;
+  border-color: black;
+}
+
+.btn-logout:hover{
+  border-color: black;
+}
+
+.login-div{
+  width: 23rem;
+  position: relative;
+}
+
+.login-div::before{
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  background-color: rgba(255, 255, 255, 0.2);
+  border-top: 1px solid rgba(255, 255, 255, 0.5);
+  border-left: 1px solid rgba(255, 255, 255, 0.5);
+  box-shadow: 20px 20px  50px 10px rgba(0, 0, 0, 0.8);
+  z-index: -1;
+  border-radius: 10px;
+  backdrop-filter: blur(5px);
+  min-height: min-content;
+}
+
+.login-div p  a{
+  text-decoration: none;
+  color: rgb(0, 225, 255);
+  transition: all 0.3s ease;
+}
+
+.login-div p  a:hover{
+    color: rgb(0, 225, 255);
+  letter-spacing: 2px;
+}

@@ -1,0 +1,52 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+    <h2 class="display-2 text-white text-center">Kirish sahifasi</h2>
+
+<!--    {% if form.errors %}-->
+<!--    <div class="text-center" style="background-color: white; padding: 10px; width: 50%; margin: auto; border-radius: 15px;">-->
+<!--        <p class="text-danger text-center display-6">Foydalanuvchi nomi va paroli mos kelmadi.</p>-->
+<!--        <p class="text-danger text-center display-6">Iltimos, yana urinib ko'ring.</p>-->
+<!--    </div>-->
+<!--    {% endif %}-->
+
+    {% if next %}
+        {% if user.is_authenticated %}
+            <p class="text-white text-center display-6">Hisobingiz ushbu sahifaga kirish huquqiga ega emas. Davom etish uchun ruxsati bor hisob bilan kiring.</p>
+            <script>
+                window.location.href="{% url 'home' %}";
+            </script>
+        {% else %}
+        <p class="text-white text-center display-6">Ushbu sahifani ko'rish uchun tizimga kiring.</p>
+        {% endif %}
+    {% endif %}
+
+    <div class="container d-flex flex-column justify-content-center align-content-center mx-auto mt-5 align-items-center  login-div py-4">
+         <form method="POST" action="{% url 'user:login' %}">
+        {% csrf_token %}
+        <table class="mt-3">
+            <tr>
+                <td class="text-white fw-bold">{{ form.username.label_tag }}</td>
+                <td>{{ form.username }}</td>
+            </tr>
+            <tr>
+                <td class="text-white fw-bold">{{ form.password.label_tag }}</td>
+                <td>{{ form.password }}</td>
+            </tr>
+        </table>
+
+        <div class="d-flex justify-content-end mt-2">
+            <button class="btn btn-login w-100" type="submit">Kirish</button>
+        </div>
+        <input type="hidden" name="next" value="{{ next }}">
+        </form>
+
+        <p style="font-size: 18px;"><a href="{% url 'user:login' %}">Parolingiz esdan chiqdimi?</a></p>
+        <div class="d-flex justify-content-end mt-2">
+    <a href="{% url 'user:signup' %}" class="btn btn-login w-100" style="font-size: 18px;">Ro`yxatdan o`tish</a>
+        </div>
+    </div>
+
+
+{% endblock content %}
